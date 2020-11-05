@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+    <data>
+        <variable
+            name="feed"
+            type="com.inhyuck.examples.kotlinnews.db.entity.Feed" />
+    </data>
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:elevation="1dp"
+        android:outlineProvider="bounds"
+        android:padding="10dp">
+
+        <TextView
+            android:id="@+id/txtTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="25sp"
+            android:background="@android:color/white"
+            android:textStyle="bold"
+            app:layout_constraintTop_toTopOf="parent"
+            android:text="@{feed.title}"
+            tools:text="Title commes here, let's try multiple lines."/>
+
+        <ImageView
+            android:id="@+id/imgThumbnail"
+            app:layout_constraintTop_toBottomOf="@id/txtTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:scaleType="fitCenter"
+            android:adjustViewBounds="true"
+            android:contentDescription="@string/thumbnail"
+            app:srcUrl="@{feed.media.oembed.thumbnailUrl}"
+            app:shouldShow="@{feed.media.oembed.thumbnailUrl != null}"
+            tools:src="@android:drawable/ic_menu_camera"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

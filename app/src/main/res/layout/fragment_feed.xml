@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+    <data>
+        <import type="androidx.lifecycle.LiveData"/>
+        <import type="com.inhyuck.examples.kotlinnews.db.entity.Feed"/>
+        <variable
+            name="feed"
+            type="LiveData&lt;Feed>" />
+    </data>
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <ImageView
+                android:id="@+id/imgThumbnail"
+                app:layout_constraintTop_toTopOf="parent"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="2dp"
+                android:scaleType="fitCenter"
+                android:adjustViewBounds="true"
+                android:contentDescription="@string/thumbnail"
+                app:srcUrl="@{feed.thumbnailUrl}"
+                app:shouldShow="@{feed.thumbnailUrl != null}"
+                tools:src="@android:drawable/ic_menu_camera"/>
+
+            <TextView
+                android:id="@+id/txtContent"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingStart="20dp"
+                android:paddingEnd="20dp"
+                android:textSize="25sp"
+                android:background="@android:color/white"
+                android:textStyle="bold"
+                app:layout_constraintTop_toBottomOf="@id/imgThumbnail"
+                android:text="@{feed.selfText}"
+                tools:text="I was wondering if you guys know some resources to learn about ktor prod deployment.\n\nI have been deploying with the embedded Netty and running into some issues.\n\nWhat would be the best way to go about this?\n\nThanks a lot!"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+
+</layout>

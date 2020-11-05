@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    app:startDestination="@id/feedListFragment"
+    tools:ignore="UnusedNavigation">
+    <fragment
+        android:id="@+id/feedFragment"
+        android:name="com.inhyuck.examples.kotlinnews.ui.FeedFragment"
+        android:label="FeedFragment"/>
+
+    <fragment
+        android:id="@+id/feedListFragment"
+        android:name="com.inhyuck.examples.kotlinnews.ui.FeedListFragment"
+        android:label="FeedListFragment" >
+        <action android:id="@+id/feedDetail"
+            app:destination="@id/feedFragment"/>
+    </fragment>
+</navigation>
