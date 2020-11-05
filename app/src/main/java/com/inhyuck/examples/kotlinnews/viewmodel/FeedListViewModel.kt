@@ -1,6 +1,7 @@
 package com.inhyuck.examples.kotlinnews.viewmodel
 
 import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.inhyuck.examples.kotlinnews.api.FeedListResponse
@@ -24,6 +25,8 @@ class FeedListViewModel(
         fetchUpdate()
         feedList = db.feedDao().loadAll()
     }
+
+    var foundError = MutableLiveData<String?>()
 
     fun fetchUpdate(){
         //TODO: set loading status
