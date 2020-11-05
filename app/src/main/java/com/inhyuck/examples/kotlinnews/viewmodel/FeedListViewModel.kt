@@ -34,13 +34,16 @@ class FeedListViewModel(
         radditService.getFeedList().enqueue(
             object : Callback<FeedListResponse>{
                 override fun onFailure(call: Call<FeedListResponse>, t: Throwable) {
-                    //TODO: handle failure
+                    // handle failure
+                    foundError.value = t.message
                 }
 
                 override fun onResponse(
                     call: Call<FeedListResponse>,
                     response: Response<FeedListResponse>
                 ) {
+                    foundError.value = null
+
                     //parse data received
                     if (response.body() != null && response.body()?.data != null){
                         val feeds = ArrayList<Feed>()
