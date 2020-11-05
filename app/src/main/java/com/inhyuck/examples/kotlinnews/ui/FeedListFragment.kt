@@ -12,6 +12,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
+import com.google.android.material.snackbar.Snackbar
 import com.inhyuck.examples.kotlinnews.R
 import com.inhyuck.examples.kotlinnews.databinding.FragmentFeedlistBinding
 import com.inhyuck.examples.kotlinnews.db.AppDB
@@ -76,6 +77,14 @@ class FeedListFragment: Fragment() {
             startPostponedEnterTransition()
         }
 
+        feedListViewModel.foundError.observe(viewLifecycleOwner, Observer { msg ->
+            msg?.let { it ->
+                Snackbar.make(view, it, Snackbar.LENGTH_LONG).show()
+                feedListViewModel.foundError.value = null
+            }
+        })
+
+        //TODO: Check internet connectivity
         initFeedList(feedListViewModel)
 
         super.onViewCreated(view, savedInstanceState)
